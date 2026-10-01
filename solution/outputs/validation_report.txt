@@ -1,0 +1,118 @@
+Validation of solution/breach_report.py - run 2026-10-01 12:22
+Reference implementation: standard library only, no shared code with the tool.
+
+[PASS] 1. Independent re-implementation agrees with the tool ticket by ticket
+  ok    same ticket set: reference 11,200, tool 11,200
+  ok    created_shift: 11,200 / 11,200 agree
+  ok    shift_day: 11,200 / 11,200 agree
+  ok    breach: 11,200 / 11,200 agree
+  ok    response_minutes: 11,200 / 11,200 agree
+  ok    headcount (staffing): 11,200 / 11,200 agree
+  ok    resolver_shift: 11,200 / 11,200 agree
+  ok    attribution: 11,200 / 11,200 agree
+  all-time breaches by reference: 2,440 = {'Unclear': 430, "Agent's own shift": 429, 'Unstaffed shift': 1581}
+
+[PASS] 2. Hand-derived golden cases (raw UTC rows -> expected output) match reference AND tool
+  ok    TK-240267: 20:24 IST, reply after exactly 15 min on chat: 15 is not later than 15, so NOT a breach
+  ok    TK-240187: 01:08 IST on 22 Jan = Night; 16 min > 15 so breach; Night had 5 agents; resolved by A3001 (Night until 29 Jun 2025) = own shift
+  ok    TK-241944: exactly 22:00 IST: Night starts at 22:00 (boundary)
+  ok    TK-240409: 21:59 IST: still Day (boundary)
+  ok    TK-250820: 05:59 IST on 16 Mar = Night of 15 Mar; 60 min > 15 so breach; no Night roster after 29 Jun 2025, so Unstaffed (resolved by a Morning agent)
+  ok    TK-244029: exactly 06:00 IST: Morning starts at 06:00 (boundary); 15 min on chat is not a breach
+  ok    TK-242834: 01:01 IST on 30 Jun = Night shift that STARTED 29 Jun, so Night still has its 5 agents
+  ok    TK-253797: 01:00 IST on 22 Jun = Night of 21 Jun; reply 333 min later (06:33 IST) = breach; unstaffed; resolved by A3028 (Morning)
+  ok    TK-242846: resolved by A3002 at 18:53 IST on 30 Jun; A3002's roster row is Day from 30 Jun (was Night to 29 Jun)
+
+[PASS] 3. Timezone proof: the export is UTC and +05:30 is the only offset consistent with IVR hours
+  1,566 voice rows. Offsets (hours, 30-min steps from -12 to +14) putting 100% inside 08:00-22:00: [5.5]
+  ok    exactly one offset works and it is +5.5 h
+  left as exported (UTC): 62.7% inside the window; raw clock range 02:30-16:28
+  ok    helpdesk: 1,068 voice rows all inside 08:00-22:00 after +05:30
+  ok    legacy_fd: 498 voice rows all inside 08:00-22:00 after +05:30
+  ok    legacy and helpdesk copies of the same ticket carry identical timestamps (616/616) -> one clock
+  ok    no first reply earlier than creation in any row (offset-independent consistency)
+
+[PASS] 4. Duplicate ticket_ids are the same ticket (only the CSAT placeholder differs)
+  11,816 rows, 11,200 unique ids, 616 ids appear more than once
+  ok    no id appears more than twice
+  ok    every duplicated id is exactly one helpdesk row + one legacy_fd row
+  ok    all 19 other columns identical in every pair
+  csat pattern across pairs: {'helpdesk blank / legacy 0': 336, 'equal': 280}
+  ok    CSAT differs only as helpdesk-blank vs legacy-0 (the documented placeholder)
+  ok    duplicates all pre-date the helpdesk go-live of 14 Sep 2025 (latest created 2025-09-13)
+  ok    both copies of every pair give the same breach result
+
+[PASS] 5. Backtest: a weekly detector fires right after the roster change, with no false alarms before it
+  78 complete weeks (2024-12-30 .. 2026-06-22); rule: weekly rate > trailing-8-week rate + 3 standard errors and >= +10 pts, >=10 tickets in the week, >=30 in the baseline
+  roster change takes effect on Mon 2025-06-30; a weekly report on that week is run the following Monday
+  ok    false alarms before the change: 0 of 54 shift-weeks tested (none)
+  ok    Night alarm in the first week after the change: 2025-06-30 (rate 92.0% vs baseline 8.7%); report available 7 days after the change
+  Night alarms after the change: 7 of 52 weeks (baseline re-learns the new level, so alarms fade by design; they fire in the weeks it matters: ['2025-06-30', '2025-07-07', '2025-07-14', '2025-07-21', '2025-07-28', '2025-08-04'])
+  ok    alarms on staffed shifts (Morning/Day) after the change: 0 of 104 shift-weeks
+  sensitivity (z, min_jump): false alarms before / weeks until Night alarm
+    z=2, jump>=0.00: 4 false alarm(s) in 54 tests; Night first alarm 2025-06-30
+    z=2, jump>=0.10: 4 false alarm(s) in 54 tests; Night first alarm 2025-06-30
+    z=3, jump>=0.00: 0 false alarm(s) in 54 tests; Night first alarm 2025-06-30
+    z=3, jump>=0.10: 0 false alarm(s) in 54 tests; Night first alarm 2025-06-30
+    z=4, jump>=0.10: 0 false alarm(s) in 54 tests; Night first alarm 2025-06-30
+  roster check (zero agents rostered on a shift): fires on 2025-06-30, i.e. day 0 - the data-driven detector confirms it and sizes the damage
+  standard resolver-view alarms: before the change 0; after: first (datetime.date(2025, 6, 30), 'Morning'); shifts alarmed after: {'Morning': 5}
+  ok    the standard report points at Morning and never at Night (the shift that actually lost its staff) - the misattribution is real
+
+[PASS] 6. Placebo: staffed shifts do not move at the change; fake change dates on Night do not look like the real one
+  real change, Morning: 9.2% -> 9.9%  (+0.7 pts, 95% CI -1.5 pts to +2.9 pts; n 841 -> 3,205)
+  real change, Day    : 8.6% -> 9.0%  (+0.3 pts, 95% CI -1.7 pts to +2.3 pts; n 925 -> 3,743)
+  real change, Night  : 10.3% -> 79.1%  (+68.8 pts, 95% CI +65.6 pts to +72.1 pts; n 487 -> 1,999)
+  ok    Morning (staffed throughout): CI -1.5 pts to +2.9 pts excludes any effect of 5 pts or more
+  ok    Day (staffed throughout): CI -1.7 pts to +2.3 pts excludes any effect of 5 pts or more
+  ok    Night: even the low end of the CI is +65.6 pts
+  placebo Morning: 10 fake change dates (Mondays 2025-03-03 .. 2025-05-05), largest |change| -6.3 pts on 2025-03-03, 2 of 10 'significant' (windows overlap, so these are not independent)
+  placebo Day    : 10 fake change dates (Mondays 2025-03-03 .. 2025-05-05), largest |change| +3.8 pts on 2025-04-07, 0 of 10 'significant' (windows overlap, so these are not independent)
+  placebo Night  : 10 fake change dates (Mondays 2025-03-03 .. 2025-05-05), largest |change| -5.9 pts on 2025-04-21, 0 of 10 'significant' (windows overlap, so these are not independent)
+  ok    largest fake Night change (+5.9 pts) is under one third of the real one (+68.8 pts)
+  ok    fake changes on Morning/Day never exceed 10 pts
+  ok    Morning chat: change +1.5 pts (CI -1.6 pts to +4.7 pts)
+  ok    Day chat: change +0.6 pts (CI -2.3 pts to +3.5 pts)
+  ok    Morning email: change +1.4 pts (CI -2.9 pts to +5.8 pts)
+  ok    Day email: change +0.4 pts (CI -3.9 pts to +4.8 pts)
+
+[PASS] 7. Share of breaches whose owner cannot be known
+  ok    three buckets reconcile to 2,440 breaches: {'Unclear': 430, "Agent's own shift": 429, 'Unstaffed shift': 1581}
+  Unstaffed shift (owner = the roster gap, knowable): 1,581 = 64.8%
+  Agent's own shift (resolver was on shift when ticket was created; inference, not a record): 429 = 17.6%
+  Unclear (resolved by a different shift, unresolved, or resolver off roster): 430 = 17.6%
+  of the own-shift breaches, 73 (17.0%) had their first reply timestamped outside the resolver's shift hours, so even the 'own shift' label may not mean the resolver sent the late reply
+  => breaches that cannot be pinned on a named agent: 35.2% of all breaches (100% of the 859 staffed-shift breaches - the export never records WHO sent the first reply)
+  => breaches with a shift-level owner we can defend: 64.8% (roster gap) plus 14.6% (own shift, reply inside shift hours)
+  from 30 Jun 2025 only: unstaffed 70.8%, own 15.9%, unclear 13.3% of 2,233 breaches
+  ok    reported (informational); agent-level conclusions must carry this caveat
+
+[PASS] 8. Money audit: credits and the saving recomputed from scratch match the tool's outputs
+  report week: Mon 2026-06-22 - Sun 2026-06-28; history used: tickets created up to 2026-06-28 (11,169)
+  STEP 1  tickets created this week 207; breaches 49; resolved/closed 45; open/pending 4
+  STEP 2  credits issued = 45 x Rs 350 = Rs 15,750;  pending = 4 x Rs 350 = Rs 1,400
+  ok    tool's breach list has 49 rows, reference 49
+  ok    tool's credits: issued Rs 15,750, pending Rs 1,400
+  ok    every breach row in the tool's CSV carries the same attribution as the reference
+  ok    credits by quarter (issued / pending / from unstaffed shifts) agree for all 6 quarters
+          all-time credits issued: 2,317 x Rs 350 = Rs 810,950
+
+  SAVING, last 13 weeks (2026-03-30 .. 2026-06-28) - every number below can be checked with a calculator
+  STEP 3  tickets created while the shift had NOBODY rostered and later resolved/closed, by shift and channel; how many breached
+  STEP 4  baseline = that shift's breach rate while it WAS staffed = breaches / tickets (all staffed history up to the report week)
+  STEP 5  expected breaches if staffed = (STEP 3 tickets) x (STEP 4 rate);  avoidable = actual - expected;  saving = avoidable x Rs 350
+  shift  chan   unstaffed  actual |  staffed k/n    rate | expected avoidable  saving Rs
+  Night  chat         251     251 |       19/245    7.8% |    19.47    231.53     81,037
+  Night  email        190     103 |       27/202   13.4% |    25.40     77.60     27,161
+  Night  social        47      39 |         4/40   10.0% |     4.70     34.30     12,005
+  TOTAL               488     393 |                      |    49.56    343.44    120,204
+  ok    tool's saving_steps rows match line by line; tool total Rs 120,203.53 vs reference Rs 120,203.53
+
+  STEP 6  per ticket created = Rs 120,204 / 2,249 tickets in the window = Rs 53.4475
+  STEP 7  at 650 tickets/week for 13 weeks = 8,450 tickets a quarter;  Rs 53.4475 x 8,450 = Rs 451,632 a quarter
+  ok    report quotes the window saving Rs 120,204
+  ok    report quotes the 650/week figure Rs 451,632 a quarter
+  ok    report quotes Rs 53.45 per ticket created
+  context: actual credits issued in the window = 547 x Rs 350 = Rs 191,450
+
+SUMMARY: 8/8 checks passed

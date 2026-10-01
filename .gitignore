@@ -1,0 +1,9 @@
+# client data stays out of the repo
+data/
+# working files, IDE, env
+_scratch/
+.venv/
+.idea/
+__pycache__/
+.ipynb_checkpoints/
+PS.pdf

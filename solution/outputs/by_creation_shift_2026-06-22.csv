@@ -1,0 +1,5 @@
+created_shift,rostered_on_last_day,tickets,breaches,breach_rate,unstaffed_shift,agents_own_shift,unclear
+Morning,20,68,5,0.07352941176470588,0,4,1
+Day,21,93,8,0.08602150537634409,0,6,2
+Night,0,46,36,0.782608695652174,36,0,0
+All,41,207,49,0.23671497584541062,36,10,3

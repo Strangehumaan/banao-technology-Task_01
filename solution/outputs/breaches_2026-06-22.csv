@@ -1,0 +1,50 @@
+ticket_id,created_at_ist,created_shift,channel,priority,assigned_team,resp_min,target_min,status,attribution,reason,resolver_name,resolver_shift,resolver_tier,minutes_over_target,credit_inr,credit_pending_inr
+TK-253797,2026-06-22 01:00:00,Night,chat,Low,Logistics,333.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Krishna Kaur,Morning,1.0,318.0,350,0
+TK-253813,2026-06-22 16:00:00,Day,email,Normal,Email Frontline,615.0,480,resolved,Unclear,resolved by an agent on a different shift,Farah Sheikh,Morning,1.0,135.0,350,0
+TK-253827,2026-06-22 22:37:00,Night,chat,Normal,Billing,479.0,15,closed,Unstaffed shift,no agent rostered on this shift,Rohit Mukherjee,Morning,1.0,464.0,350,0
+TK-253828,2026-06-22 22:40:00,Night,email,Normal,Logistics,640.0,480,resolved,Unstaffed shift,no agent rostered on this shift,Om Malhotra,Morning,1.0,160.0,350,0
+TK-253829,2026-06-22 22:47:00,Night,email,Normal,Email Frontline,589.0,480,resolved,Unstaffed shift,no agent rostered on this shift,Sai Sandhu,Morning,1.0,109.0,350,0
+TK-253844,2026-06-23 13:46:00,Morning,email,Normal,Email Frontline,881.0,480,resolved,Agent's own shift,resolved by an agent on the same shift,Sai Sandhu,Morning,1.0,401.0,350,0
+TK-253856,2026-06-23 16:07:00,Day,chat,High,Billing,30.0,15,resolved,Agent's own shift,resolved by an agent on the same shift,Thomas Patel,Day,1.0,15.0,350,0
+TK-253867,2026-06-23 22:14:00,Night,email,Normal,Logistics,625.0,480,resolved,Unstaffed shift,no agent rostered on this shift,Om Malhotra,Morning,1.0,145.0,350,0
+TK-253868,2026-06-23 22:22:00,Night,chat,Normal,Returns Desk,482.0,15,closed,Unstaffed shift,no agent rostered on this shift,Rahul Sen,Morning,1.0,467.0,350,0
+TK-253870,2026-06-23 22:42:00,Night,email,High,Billing,490.0,480,resolved,Unstaffed shift,no agent rostered on this shift,Amit Kulkarni,Morning,1.0,10.0,350,0
+TK-253876,2026-06-24 09:26:00,Morning,email,Normal,Escalations & Warranty,806.0,480,resolved,Agent's own shift,resolved by an agent on the same shift,Riya Gaikwad,Morning,2.0,326.0,350,0
+TK-253901,2026-06-24 22:00:00,Night,chat,Normal,Escalations & Warranty,493.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Riya Gaikwad,Morning,2.0,478.0,350,0
+TK-253902,2026-06-24 22:44:00,Night,social,Normal,Logistics,497.0,240,closed,Unstaffed shift,no agent rostered on this shift,Krishna Kaur,Morning,1.0,257.0,350,0
+TK-253904,2026-06-24 22:46:00,Night,chat,Low,Logistics,474.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Om Malhotra,Morning,1.0,459.0,350,0
+TK-253905,2026-06-24 22:49:00,Night,chat,Normal,Chat Frontline,499.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Amit Yadav,Day,1.0,484.0,350,0
+TK-253906,2026-06-24 23:55:00,Night,chat,Normal,Chat Frontline,431.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Ritika Chatterjee,Morning,1.0,416.0,350,0
+TK-253908,2026-06-25 01:08:00,Night,chat,Normal,Logistics,295.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Om Malhotra,Morning,1.0,280.0,350,0
+TK-253909,2026-06-25 02:22:00,Night,chat,Normal,Billing,246.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Aadhya Sheikh,Morning,1.0,231.0,350,0
+TK-253911,2026-06-25 03:26:00,Night,chat,Normal,Chat Frontline,159.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Diya Patil,Morning,1.0,144.0,350,0
+TK-253913,2026-06-25 03:31:00,Night,chat,High,Billing,180.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Amit Kulkarni,Morning,1.0,165.0,350,0
+TK-253939,2026-06-25 20:48:00,Day,chat,Normal,Logistics,31.0,15,resolved,Agent's own shift,resolved by an agent on the same shift,Dev Chatterjee,Day,1.0,16.0,350,0
+TK-253941,2026-06-25 22:19:00,Night,email,Normal,Returns Desk,560.0,480,resolved,Unstaffed shift,no agent rostered on this shift,Rahul Sen,Morning,1.0,80.0,350,0
+TK-253942,2026-06-25 22:28:00,Night,email,Normal,Logistics,532.0,480,resolved,Unstaffed shift,no agent rostered on this shift,Krishna Kaur,Morning,1.0,52.0,350,0
+TK-253944,2026-06-26 02:24:00,Night,chat,Normal,Returns Desk,232.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Rahul Sen,Morning,1.0,217.0,350,0
+TK-253946,2026-06-26 05:08:00,Night,chat,Normal,Logistics,106.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Krishna Kaur,Morning,1.0,91.0,350,0
+TK-253973,2026-06-26 19:20:00,Day,chat,Normal,Chat Frontline,16.0,15,resolved,Agent's own shift,resolved by an agent on the same shift,Lakshmi Sethi,Day,1.0,1.0,350,0
+TK-253974,2026-06-26 20:41:00,Day,voice,Normal,Voice Frontline,123.0,120,resolved,Unclear,resolved by an agent on a different shift,Lobsang Rao,Morning,1.0,3.0,350,0
+TK-253978,2026-06-26 22:56:00,Night,chat,High,Logistics,486.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Om Malhotra,Morning,1.0,471.0,350,0
+TK-253979,2026-06-26 23:49:00,Night,chat,Normal,Escalations & Warranty,375.0,15,closed,Unstaffed shift,no agent rostered on this shift,Riya Gaikwad,Morning,2.0,360.0,350,0
+TK-253980,2026-06-27 00:13:00,Night,email,High,Logistics,511.0,480,open,Unstaffed shift,no agent rostered on this shift,,,,31.0,0,350
+TK-253982,2026-06-27 05:01:00,Night,chat,Normal,Chat Frontline,106.0,15,open,Unstaffed shift,no agent rostered on this shift,,,,91.0,0,350
+TK-254006,2026-06-27 21:35:00,Day,email,Normal,Email Frontline,709.0,480,resolved,Agent's own shift,resolved by an agent on the same shift,Rohit Shinde,Day,1.0,229.0,350,0
+TK-254008,2026-06-27 22:27:00,Night,email,Normal,Email Frontline,497.0,480,resolved,Unstaffed shift,no agent rostered on this shift,Sai Sandhu,Morning,1.0,17.0,350,0
+TK-254010,2026-06-27 22:56:00,Night,email,Normal,Email Frontline,489.0,480,resolved,Unstaffed shift,no agent rostered on this shift,Sai Sandhu,Morning,1.0,9.0,350,0
+TK-254011,2026-06-27 23:42:00,Night,email,Normal,Email Frontline,510.0,480,resolved,Unstaffed shift,no agent rostered on this shift,Sai Sandhu,Morning,1.0,30.0,350,0
+TK-254012,2026-06-28 00:12:00,Night,chat,Normal,Chat Frontline,355.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Ritika Chatterjee,Morning,1.0,340.0,350,0
+TK-254014,2026-06-28 00:31:00,Night,chat,Normal,Chat Frontline,370.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Aditya Dhillon,Day,1.0,355.0,350,0
+TK-254015,2026-06-28 00:49:00,Night,chat,Normal,Chat Frontline,352.0,15,pending,Unstaffed shift,no agent rostered on this shift,,,,337.0,0,350
+TK-254020,2026-06-28 04:45:00,Night,chat,Normal,Chat Frontline,143.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Diya Patil,Morning,1.0,128.0,350,0
+TK-254021,2026-06-28 05:38:00,Night,chat,High,Billing,76.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Aadhya Sheikh,Morning,1.0,61.0,350,0
+TK-254023,2026-06-28 08:46:00,Morning,social,High,Billing,294.0,240,resolved,Agent's own shift,resolved by an agent on the same shift,Aadhya Sheikh,Morning,1.0,54.0,350,0
+TK-254024,2026-06-28 09:48:00,Morning,chat,Normal,Chat Frontline,35.0,15,resolved,Agent's own shift,resolved by an agent on the same shift,Sameer Joshi,Morning,1.0,20.0,350,0
+TK-254034,2026-06-28 13:09:00,Morning,email,Low,Email Frontline,1045.0,480,open,Unclear,not resolved yet - no resolver,,,,565.0,0,350
+TK-254039,2026-06-28 15:15:00,Day,chat,Normal,Chat Frontline,16.0,15,closed,Agent's own shift,resolved by an agent on the same shift,Tarun Mishra,Day,1.0,1.0,350,0
+TK-254048,2026-06-28 21:22:00,Day,chat,Normal,Chat Frontline,17.0,15,closed,Agent's own shift,resolved by an agent on the same shift,Lakshmi Sethi,Day,1.0,2.0,350,0
+TK-254050,2026-06-28 22:05:00,Night,chat,Normal,Logistics,478.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Krishna Kaur,Morning,1.0,463.0,350,0
+TK-254051,2026-06-28 22:44:00,Night,email,Normal,Email Frontline,483.0,480,resolved,Unstaffed shift,no agent rostered on this shift,Farah Sheikh,Morning,1.0,3.0,350,0
+TK-254053,2026-06-28 22:46:00,Night,chat,High,Returns Desk,500.0,15,resolved,Unstaffed shift,no agent rostered on this shift,Rahul Sen,Morning,1.0,485.0,350,0
+TK-254054,2026-06-28 23:43:00,Night,email,Normal,Email Frontline,533.0,480,resolved,Unstaffed shift,no agent rostered on this shift,Farah Sheikh,Morning,1.0,53.0,350,0
