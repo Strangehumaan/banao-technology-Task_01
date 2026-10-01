@@ -126,7 +126,7 @@ I chose these because each either cannot change the breach numbers or answers a 
 
 **Your Public Google Drive Link**
 
-[GOOGLE DRIVE LINK]
+[[GOOGLE DRIVE LINK]](https://drive.google.com/file/d/1BUnOv1b3YOKYRnrr3QK93qI9kafZ9-d2/view?usp=sharing)
 
 ---
 
@@ -146,4 +146,4 @@ I chose these because each either cannot change the breach numbers or answers a 
 
 **Github Repo Link** (public)
 
-[GITHUB REPO URL]
+[[GITHUB REPO URL]](https://github.com/Strangehumaan/banao-technology-Task_01)
